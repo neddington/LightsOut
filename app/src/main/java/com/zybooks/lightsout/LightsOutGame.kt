@@ -2,6 +2,7 @@ package com.zybooks.lightsout
 
 import kotlin.random.Random
 
+
 const val GRID_SIZE = 3
 
 class LightsOutGame {

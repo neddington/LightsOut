@@ -2,4 +2,7 @@
     <string name="app_name">Lights Out</string>
     <string name="new_game">New Game</string>
     <string name="congrats">Congratulations!</string>
+    <string name="gameover">"Game Over?</string>
+    <string name="tips">"Tips"</string>
+    <string name="share">"Share"</string>
 </resources>

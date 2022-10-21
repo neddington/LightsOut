@@ -1,5 +1,6 @@
 package com.zybooks.lightsout
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.GridLayout
@@ -7,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
+import com.zybooks.lightsout.databinding.ActivityMainBinding
 
 const val GAME_STATE = "gameState"
 class MainActivity : AppCompatActivity() {
@@ -15,12 +17,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var lightGridLayout: GridLayout
     private var lightOnColor = 0
     private var lightOffColor = 0
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        lightGridLayout = binding.lightGrid
 
-        lightGridLayout = findViewById(R.id.light_grid)
+        binding.newGameButton.setOnClickListener { _ -> startGame() }
+
+        binding.gameOverButton.setOnClickListener { _ -> val gameOverIntent = Intent(this, GameOver::class.java )
+            startActivity(gameOverIntent) }
+
 
         // Add the same click handler to all grid buttons
         for (gridButton in lightGridLayout.children) {
@@ -81,9 +90,5 @@ class MainActivity : AppCompatActivity() {
                 gridButton.setBackgroundColor(lightOffColor)
             }
         }
-    }
-
-    fun onNewGameClick(view: View) {
-        startGame()
     }
 }
